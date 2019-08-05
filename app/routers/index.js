@@ -1,5 +1,6 @@
 // Import our Controllers
 const userController = require('../controllers/userController');
+// Import our Models
 const documentation = require('../models/User');
 
 const routes = [{
@@ -16,7 +17,7 @@ const routes = [{
         method: 'POST',
         url: '/api/users',
         handler: userController.addUser,
-        schema: documentation.UserSchema
+        schema: documentation.addUserSchema
     },
     {
         method: 'PUT',
@@ -30,4 +31,4 @@ const routes = [{
     }
 ]
 
-module.exports = routes
+module.exports = routes;
