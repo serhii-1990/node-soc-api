@@ -15,5 +15,6 @@ exports.options = {
         schemes: ['http'],
         consumes: ['application/json'],
         produces: ['application/json']
+
     }
 }

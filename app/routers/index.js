@@ -1,7 +1,7 @@
 // Import our Controllers
-const userController = require('../controllers/userController');
-// Import our Models
-const documentation = require('../models/User');
+const userController = require('../controllers/userController')
+    // Import our Models
+    //const documentation = require('../models/User')
 
 const routes = [{
         method: 'GET',
@@ -17,7 +17,7 @@ const routes = [{
         method: 'POST',
         url: '/api/users',
         handler: userController.addUser,
-        schema: documentation.addUserSchema
+        //schema: documentation.addUserSchema
     },
     {
         method: 'PUT',
@@ -31,4 +31,4 @@ const routes = [{
     }
 ]
 
-module.exports = routes;
+module.exports = routes
