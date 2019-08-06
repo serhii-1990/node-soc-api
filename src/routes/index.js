@@ -25,12 +25,14 @@ const routes = [{
     {
         method: 'PUT',
         url: '/api/users/:id',
-        handler: userController.updateUser
+        handler: userController.updateUser,
+        schema: documentation.updateUserSchema
     },
     {
         method: 'DELETE',
         url: '/api/users/:id',
-        handler: userController.deleteUser
+        handler: userController.deleteUser,
+        schema: documentation.deleteUserByIdSchema
     }
 ]
 
