@@ -1,4 +1,4 @@
-#REST APIs using Node.js, MongoDB, Fastify and Swagger
+# REST APIs using Node.js, MongoDB, Fastify and Swagger
 
 > A Node.js project
 
