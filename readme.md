@@ -11,6 +11,9 @@ npm install
 > serve will be live on http://127.0.0.1:3000
 cd src
 node server.js
+
+> sswagger ui on
+http://127.0.0.1:3000/documentation
 ```
 ## Prerequisites
 > Nodejs
