@@ -2,13 +2,53 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    userName: String,
-    email: String,
-    password: String,
+    userName: {
+        type: String,
+        unique: true,
+        required: true,
+        validate: {
+            validator: function(reg) {
+                return /^(?=.{3,24})[a-z][a-z0-9]*[._-]?[a-z0-9]+$/.test(reg);
+            },
+            message: props => `${props.value} is not a valid username!`
+        }
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        validate: {
+            validator: function(reg) {
+                return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(reg);
+            },
+            message: props => `${props.value} is not a valid email!`
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        validate: {
+            // Latin lowercase and capital letters, numbers, special characters, min 8 characters
+            validator: function(reg) {
+                return /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(reg);
+            },
+            message: props => `${props.value} is not a valid password!`
+        }
+    },
     country: String,
     city: String,
     personalInfo: {
-        age: Number,
+        birthday: {
+            type: String,
+            required: false,
+            validate: {
+                // DD/MM/YYYY
+                validator: function(reg) {
+                    return /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/.test(reg);
+                },
+                message: props => `${props.value} is not a valid date!`
+            }
+        },
         education: String,
         job: String,
         status: String
