@@ -36,23 +36,7 @@ const userSchema = new mongoose.Schema({
         }
     },
     country: String,
-    city: String,
-    personalInfo: {
-        birthday: {
-            type: String,
-            required: false,
-            validate: {
-                // DD/MM/YYYY
-                validator: function(reg) {
-                    return /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/.test(reg);
-                },
-                message: props => `${props.value} is not a valid date!`
-            }
-        },
-        education: String,
-        job: String,
-        status: String
-    }
+    city: String
 })
 
 module.exports = mongoose.model('User', userSchema)

@@ -1,20 +1,20 @@
-# REST APIs using Node.js, MongoDB, Fastify and Swagger
+# A blazing fast REST APIs with Node.js, MongoDB, Fastify and Swagger.
 
 > A Node.js project
 
 ## Build Setup
 
 ``` bash
-> install dependencies
+# install dependencies
 npm install
 
-> serve will be live on http://127.0.0.1:3000
-cd src
-node server.js
-
-> sswagger ui on
-http://127.0.0.1:3000/documentation
+# serve with hot reload at localhost:8080
+npm start
 ```
 ## Prerequisites
-> Nodejs
-> MongoDB
+- Nodejs
+- MongoDB
+
+## Tutorial on Medium
+
+https://medium.freecodecamp.org/how-to-build-blazing-fast-rest-apis-with-node-js-mongodb-fastify-and-swagger-114e062db0c9

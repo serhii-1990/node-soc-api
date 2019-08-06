@@ -8,7 +8,8 @@ const User = require('../models/User')
 exports.getUsers = async(req, reply) => {
     try {
         const user = await User.find()
-        return user
+        console.log(JSON.stringify(user));
+        return JSON.stringify(user)
     } catch (err) {
         throw boom.boomify(err)
     }
@@ -19,7 +20,7 @@ exports.getSingleUser = async(req, reply) => {
     try {
         const id = req.params.id
         const user = await User.findById(id)
-        return user
+        return JSON.stringify(user)
     } catch (err) {
         throw boom.boomify(err)
     }
@@ -35,7 +36,7 @@ exports.addUser = async(req, reply) => {
     }
 }
 
-// Update an existing user
+// Update an existing users
 exports.updateUser = async(req, reply) => {
     try {
         const id = req.params.id
@@ -53,7 +54,7 @@ exports.deleteUser = async(req, reply) => {
     try {
         const id = req.params.id
         const user = await User.findByIdAndRemove(id)
-        return user
+        return JSON.stringify(user)
     } catch (err) {
         throw boom.boomify(err)
     }

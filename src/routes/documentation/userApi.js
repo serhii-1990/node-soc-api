@@ -9,8 +9,7 @@ exports.addUserSchema = {
             email: { type: 'string' },
             password: { type: 'string' },
             country: { type: 'string' },
-            city: { type: 'string' },
-            personalInfo: { type: 'object' }
+            city: { type: 'string' }
         }
     },
     response: {
@@ -23,8 +22,7 @@ exports.addUserSchema = {
                 email: { type: 'string' },
                 password: { type: 'string' },
                 country: { type: 'string' },
-                city: { type: 'string' },
-                personalInfo: { type: 'object' }
+                city: { type: 'string' }
             }
         }
     }
@@ -44,12 +42,12 @@ exports.getUserSchema = {
                 email: { type: 'string' },
                 password: { type: 'string' },
                 country: { type: 'string' },
-                city: { type: 'string' },
-                personalInfo: { type: 'object' }
+                city: { type: 'string' }
             }
         }
     }
-}
+};
+
 
 exports.getUserByIdSchema = {
     description: 'Get single user by id',
@@ -71,12 +69,11 @@ exports.getUserByIdSchema = {
                 email: { type: 'string' },
                 password: { type: 'string' },
                 country: { type: 'string' },
-                city: { type: 'string' },
-                personalInfo: { type: 'object' }
+                city: { type: 'string' }
             }
         }
     }
-}
+};
 
 exports.updateUserSchema = {
     description: 'Update a single user',
@@ -90,8 +87,7 @@ exports.updateUserSchema = {
             email: { type: 'string' },
             password: { type: 'string' },
             country: { type: 'string' },
-            city: { type: 'string' },
-            personalInfo: { type: 'object' }
+            city: { type: 'string' }
         }
     },
     response: {
@@ -104,12 +100,11 @@ exports.updateUserSchema = {
                 email: { type: 'string' },
                 password: { type: 'string' },
                 country: { type: 'string' },
-                city: { type: 'string' },
-                personalInfo: { type: 'object' }
+                city: { type: 'string' }
             }
         }
     }
-}
+};
 
 exports.deleteUserByIdSchema = {
     description: 'Delete single user by id',
@@ -131,9 +126,8 @@ exports.deleteUserByIdSchema = {
                 email: { type: 'string' },
                 password: { type: 'string' },
                 country: { type: 'string' },
-                city: { type: 'string' },
-                personalInfo: { type: 'object' }
+                city: { type: 'string' }
             }
         }
     }
-}
+};
