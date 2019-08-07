@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
+    postid: {
+        type: String,
+        required: true,
+    },
     username: {
         type: String,
         required: true,
@@ -12,27 +16,11 @@ const postSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid username!`
         }
     },
-    title: {
-        type: String,
-        required: false,
-        maxlength: 40
-    },
     body: {
         type: String,
         required: true,
         minlength: 3,
         maxlength: 240
-    },
-    image: {
-        type: String,
-        required: false,
-        validate: {
-            validator: function(reg) {
-                return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(reg);
-            },
-            message: props => `${props.value} is not a valid url!`
-        }
-
     },
     likes: {
         type: Number,
@@ -41,8 +29,8 @@ const postSchema = new mongoose.Schema({
     }
 });
 
-// Export Post model
-const Post = module.exports = mongoose.model('Post', postSchema);
+// Export Comment model
+const Comment = module.exports = mongoose.model('Comment', commentSchema);
 module.exports.get = function(callback, limit) {
-    Post.find(callback).limit(limit);
+    Comment.find(callback).limit(limit);
 }
