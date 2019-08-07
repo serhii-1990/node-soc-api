@@ -16,7 +16,17 @@ JSON
 	"password": "String",
 	"country": "String",
 	"state": "String",
-	"city": "String"
+	"city": "String",
+	"userInfo": {
+	    "preview": "String",
+	    "firstname": "String",
+	    "lastname": "String",
+	    "status": "String",
+	    "education": "String",
+	    "job": "String",
+	    "birthday": "String",
+	    "isBlocked": "Boolean"
+	}
 }
 ```
 
