@@ -1,4 +1,4 @@
-**User**
+### User
 
 ```
 GET `/api/user`
@@ -20,7 +20,7 @@ JSON
 }
 ```
 
-**Post**
+### Post
 
 ```
 GET `/api/post`
