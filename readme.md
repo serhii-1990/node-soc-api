@@ -20,6 +20,8 @@ JSON
 }
 ```
 
+req: username, email, password, country
+
 ### Post
 
 ```
@@ -33,10 +35,11 @@ DELETE `/api/post/:id`
 JSON
 ```
 {
-	"username": "String*",
+	"username": "String",
 	"title": "String",
-	"body": "String*",
+	"body": "String",
 	"image": "String",
-	"likes": "Number*"
+	"likes": "Number"
 }
 ```
+req: username, body, likes
