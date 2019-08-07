@@ -26,6 +26,13 @@ const postSchema = new mongoose.Schema({
     image: {
         type: String,
         required: false,
+        validate: {
+            validator: function(reg) {
+                return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(reg);
+            },
+            message: props => `${props.value} is not a valid url!`
+        }
+
     },
     likes: {
         type: Number,
