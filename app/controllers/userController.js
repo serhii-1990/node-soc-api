@@ -19,7 +19,7 @@ exports.index = function(req, res) {
 // Create new user
 exports.new = function(req, res) {
     var user = new User();
-    user.userName = req.body.userName ? req.body.userName : user.userName;
+    user.username = req.body.username ? req.body.username : user.username;
     user.email = req.body.email;
     user.password = req.body.password;
     user.country = req.body.country;
@@ -52,7 +52,7 @@ exports.update = function(req, res) {
     User.findById(req.params.user_id, function(err, user) {
         if (err)
             res.send(err);
-        user.userName = req.body.userName ? req.body.userName : user.userName;
+        user.username = req.body.username ? req.body.username : user.username;
         user.email = req.body.email;
         user.password = req.body.password;
         user.country = req.body.country;
