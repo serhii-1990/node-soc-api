@@ -19,3 +19,24 @@ JSON
 	"city": "String"
 }
 ```
+
+**Post**
+
+```
+GET `/api/post`
+POST `/api/post`
+GET `/api/post/:id`
+PUT `/api/post/:id`
+PATCH `/api/post/:id`
+DELETE `/api/post/:id`
+```
+JSON
+```
+{
+	"username": "String*",
+	"title": "String",
+	"body": "String*",
+	"image": "String",
+	"likes": "Number*"
+}
+```
