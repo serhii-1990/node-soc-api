@@ -19,10 +19,9 @@ exports.index = function(req, res) {
 // Create new comment
 exports.new = function(req, res) {
     var comment = new Comment();
-    comment.username = req.body.username ? req.body.username : user.username;
-    comment.title = req.body.title;
+    comment.postid = req.body.postid ? req.body.postid : user.postid;
+    comment.username = req.body.username;
     comment.body = req.body.body;
-    comment.image = req.body.image;
     comment.likes = req.body.likes;
 
     comment.save(function(err) {
@@ -51,10 +50,9 @@ exports.update = function(req, res) {
     Comment.findById(req.params.comment_id, function(err, comment) {
         if (err)
             res.send(err);
-        comment.username = req.body.username ? req.body.username : user.username;
-        comment.title = req.body.title;
+        comment.postid = req.body.postid ? req.body.postid : user.postid;
+        comment.username = req.body.username;
         comment.body = req.body.body;
-        comment.image = req.body.image;
         comment.likes = req.body.likes;
         // save the comment and check for errors
         comment.save(function(err) {
