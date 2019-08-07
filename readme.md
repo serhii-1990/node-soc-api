@@ -1,4 +1,4 @@
-**** User
+**User**
 
 ```
 GET `/api/user`
@@ -8,7 +8,7 @@ PUT `/api/user/:id`
 PATCH `/api/user/:id`
 DELETE `/api/user/:id`
 ```
-
+JSON
 ```
 {
 	"username": "String",
