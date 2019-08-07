@@ -36,15 +36,21 @@ const userSchema = new mongoose.Schema({
     },
     country: {
         type: String,
-        required: true
+        required: true,
+        uppercase: true,
+        minlength: 2,
+        maxlength: 3
     },
     state: {
         type: String,
-        required: false
+        required: false,
+        uppercase: true,
+        minlength: 0,
+        maxlength: 2
     },
     city: {
         type: String,
-        required: true
+        required: false
     }
 });
 // Export User model

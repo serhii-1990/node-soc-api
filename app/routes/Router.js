@@ -9,6 +9,8 @@ router.get('/', function(req, res) {
 });
 // Import user controller
 const userController = require('../controllers/userController');
+// Import post controller
+const postController = require('../controllers/postController');
 // User routes
 router.route('/user')
     .get(userController.index)
@@ -18,6 +20,16 @@ router.route('/user/:user_id')
     .patch(userController.update)
     .put(userController.update)
     .delete(userController.delete);
+
+// Post routes
+router.route('/post')
+    .get(postController.index)
+    .post(postController.new);
+router.route('/post/:post_id')
+    .get(postController.view)
+    .patch(postController.update)
+    .put(postController.update)
+    .delete(postController.delete);
 
 // Export API routes
 module.exports = router;
