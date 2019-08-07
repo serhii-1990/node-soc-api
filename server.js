@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/global-api', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/global-api2', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(reg) {
-                return /^[a-z0-9_-]{6,24}$/.test(reg);
+                return /^[a-zA-Z0-9_-]{6,24}$/.test(reg);
             },
             message: props => `${props.value} is not a valid username!`
         }
@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
     country: {
         type: String,
         required: true,
+        unique: false,
         uppercase: true,
         minlength: 2,
         maxlength: 3
@@ -44,14 +45,28 @@ const userSchema = new mongoose.Schema({
     state: {
         type: String,
         required: false,
+        unique: false,
         uppercase: true,
         minlength: 0,
         maxlength: 2
     },
     city: {
         type: String,
+        unique: false,
         required: false
-    }
+    },
+    versionKey: false
+        /* ,
+            userInfo: {
+                firstname: {},
+                lastname: {},
+                status: {},
+                education: {},
+                job: {},
+                birthday: {},
+                isBlocked: {}
+            }
+        */
 });
 // Export User model
 const User = module.exports = mongoose.model('User', userSchema);
