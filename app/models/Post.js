@@ -36,7 +36,7 @@ const postSchema = new mongoose.Schema({
     },
     likes: {
         type: Number,
-        required: false,
+        required: true,
         default: 0,
     }
 });
