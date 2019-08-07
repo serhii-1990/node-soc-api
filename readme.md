@@ -20,7 +20,7 @@ JSON
 }
 ```
 
-req: username, email, password, country
+**username, email, password, country**
 
 ### Post
 
@@ -42,4 +42,25 @@ JSON
 	"likes": "Number"
 }
 ```
-req: username, body, likes
+**username, body, likes**
+
+### Comment
+
+```
+GET `/api/comment`
+POST `/api/comment`
+GET `/api/comment/:id`
+PUT `/api/comment/:id`
+PATCH `/api/comment/:id`
+DELETE `/api/comment/:id`
+```
+JSON
+```
+{
+	"postid": "String",
+	"username": "String",
+	"body": "String",
+	"likes": "Number"
+}
+```
+**postid, username, body, likes**
