@@ -10,24 +10,24 @@ User = require('../models/User');
 const tokenList = {};
 
 exports.login = function(req, res) {
+
     const loginData = req.body;
 
     const user = {
         "username": loginData.username,
         "password": loginData.password
     };
-
-
+    // is user exists
     User.find({ "username": loginData.username }, { "password": loginData.password }, function(err, result) {
         if (result.length !== 0) {
             const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
             const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
-            // отправляю токены клиент
+            // write down my tokens
             const response = {
                 "token": token,
                 "refreshToken": refreshToken
             };
-            // response for client
+            // response tokens for client
             tokenList[refreshToken] = response;
             res.status(200).json(response);
             // add data into token collection
@@ -35,7 +35,7 @@ exports.login = function(req, res) {
             tokens.username = loginData.username;
             tokens.refreshToken = refreshToken;
             tokens.isRevoked = false;
-
+            // save tokens info
             tokens.save(function(err) {
                 if (err)
                     console.log(err);
@@ -47,12 +47,6 @@ exports.login = function(req, res) {
             console.log("User not found");
         }
     });
-
-
-    // необходимо записать в коллекцию:
-    // ид/юзернейм пользователя,
-    // рефреш токен,
-    // ревок (по ум. должен быть false)
 };
 
 exports.refresh = function(req, res) {
