@@ -13,6 +13,9 @@ const app = express();
 // Import CORS
 const cors = require('cors');
 
+// Import jwt
+const jwt = require('jsonwebtoken');
+
 // Import routes
 const apiRoutes = require("./app/routes/Router");
 

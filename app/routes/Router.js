@@ -1,5 +1,7 @@
 // Initialize Express router
 const router = require('express').Router();
+
+//router.use(require('../config/tokenChecker'));
 // Default API response
 router.get('/', function(req, res) {
     res.json({
@@ -7,12 +9,22 @@ router.get('/', function(req, res) {
         message: 'REST API created using Node.js & Mongoose & Express',
     });
 });
+
+// Import login controller
+const loginController = require('../controllers/loginController');
 // Import user controller
 const userController = require('../controllers/userController');
 // Import post controller
 const postController = require('../controllers/postController');
 // Import post controller
 const commentController = require('../controllers/commentController');
+
+// Login routes
+router.route('/login')
+    .post(loginController.login);
+router.route('/token')
+    .post(loginController.token);
+
 // User routes
 router.route('/user')
     .get(userController.index)
