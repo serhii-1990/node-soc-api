@@ -40,9 +40,7 @@ exports.refresh = function(req, res) {
         if (err)
             res.send(err);
         const loginData = req.body;
-        refresh.username = loginData.username;
         refresh.refreshToken = loginData.refreshToken;
-        refresh.isRevoked = loginData.isRevoked;
 
         if ((refresh.refreshToken) && (refresh.refreshToken in tokenList)) {
             const token = jwt.sign(refresh, config.secret, { expiresIn: config.tokenLife })
