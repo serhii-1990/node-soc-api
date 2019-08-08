@@ -1,7 +1,7 @@
 ### Login
-
-`POST `/api/login``
-
+```
+POST `/api/login`
+```
 JSON
 ```
 {
@@ -18,8 +18,9 @@ WILL RETURNED
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzZGFzZHNhZGEiLCJwYXNzd29yZCI6ImFzZGFzZGEiLCJpYXQiOjE1NjUyNTczMzYsImV4cCI6MTU2NTM0MzczNn0.GDWOZoIVitkL5aK_uGieRJoNLIdAZHXkx83ObCUUEeY"
 }
 ```
-
-`POST `/api/token``
+```
+POST `/api/token`
+```
 
 JSON
 ```
