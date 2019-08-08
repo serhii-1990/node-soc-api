@@ -2,31 +2,40 @@
 const jwt = require('jsonwebtoken');
 // Import jwt config
 const config = require('../config/config');
-//Import User model
+//Import Token model
 Token = require('../models/Token');
+//Import User model
+User = require('../models/User');
 // Create token list
 const tokenList = {};
 
 exports.login = function(req, res) {
-    // необходимо сделать
-    // проверку на то, что такой пользователь есть
-    // в Users по username и password
     const loginData = req.body;
+
     const user = {
         "username": loginData.username,
         "password": loginData.password
     };
 
-    const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
-    const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
-    // отправляю токены клиент
-    const response = {
-        "token": token,
-        "refreshToken": refreshToken
-    };
+    User.find({ "username": loginData.username }, { "password": loginData.password }, function(err, result) {
+        if (result.length !== 0) {
+            const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
+            const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
+            // отправляю токены клиент
+            const response = {
+                "token": token,
+                "refreshToken": refreshToken
+            };
 
-    tokenList[refreshToken] = response;
-    res.status(200).json(response);
+            tokenList[refreshToken] = response;
+            res.status(200).json(response);
+        } else {
+            res.json(err);
+            console.log("User not found");
+        }
+    });
+
+
     // необходимо записать в коллекцию:
     // ид/юзернейм пользователя,
     // рефреш токен,
