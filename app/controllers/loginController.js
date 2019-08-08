@@ -17,6 +17,7 @@ exports.login = function(req, res) {
         "password": loginData.password
     };
 
+
     User.find({ "username": loginData.username }, { "password": loginData.password }, function(err, result) {
         if (result.length !== 0) {
             const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
@@ -26,9 +27,21 @@ exports.login = function(req, res) {
                 "token": token,
                 "refreshToken": refreshToken
             };
-
+            // response for client
             tokenList[refreshToken] = response;
             res.status(200).json(response);
+            // add data into token collection
+            var tokens = new Token();
+            tokens.username = loginData.username;
+            tokens.refreshToken = refreshToken;
+            tokens.isRevoked = false;
+
+            tokens.save(function(err) {
+                if (err)
+                    console.log(err);
+                else
+                    console.log(tokens);
+            });
         } else {
             res.json(err);
             console.log("User not found");
