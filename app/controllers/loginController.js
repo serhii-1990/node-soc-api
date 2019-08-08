@@ -35,8 +35,7 @@ exports.token = function(req, res) {
     const loginData = req.body;
     if ((loginData.refreshToken) && (loginData.refreshToken in tokenList)) {
         const user = {
-            "username": loginData.username,
-            "password": loginData.password
+            "username": loginData.username
         };
         const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife })
         const response = {
