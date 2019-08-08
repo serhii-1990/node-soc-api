@@ -13,31 +13,46 @@ return
 
 ```
 {
-    "status": "Logged in",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
-### Token
+### Refresh
 ```
-POST `/api/token`
+POST `/refresh/:refreshToken`
 ```
 
 JSON
 ```
 {
-	"username": "String",
 	"refreshToken": "String"
-	"isRevoked": "Boolean"
 }
 ```
 return
 ```
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
+### Revoked
+```
+POST `/revoke/:refreshToken`
+```
+
+JSON
+```
+{
+	"refreshToken": "String"
+}
+```
+return
+```
+{
+    "status": "revoked"
+}
+```
 
 ### User
 
