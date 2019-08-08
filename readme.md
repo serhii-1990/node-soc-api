@@ -1,3 +1,44 @@
+### Login
+```
+POST `/api/login`
+```
+JSON
+```
+{
+	"username": "String",
+	"password": "String",
+}
+```
+WILL RETURNED
+
+```
+{
+    "status": "Logged in",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzZGFzZHNhZGEiLCJwYXNzd29yZCI6ImFzZGFzZGEiLCJpYXQiOjE1NjUyNTczMzYsImV4cCI6MTU2NTI1ODIzNn0.F534jUvLTMaZs6Ej0QaRR6XL_wfiUcxanarmD-jlfec",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzZGFzZHNhZGEiLCJwYXNzd29yZCI6ImFzZGFzZGEiLCJpYXQiOjE1NjUyNTczMzYsImV4cCI6MTU2NTM0MzczNn0.GDWOZoIVitkL5aK_uGieRJoNLIdAZHXkx83ObCUUEeY"
+}
+```
+### Token
+```
+POST `/api/token`
+```
+
+JSON
+```
+{
+	"username": "String",
+	"password": "String",
+	"refreshToken": "String"
+}
+```
+WILL RETURNED
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzZGFzZHNhZGEiLCJwYXNzd29yZCI6ImFzZGFzZGEiLCJpYXQiOjE1NjUyNTcxMTMsImV4cCI6MTU2NTI1ODAxM30.8Kgq5kWGxoEgjotnbyWy2HeiAbfsFejmf5pNYyZ229s"
+}
+```
+
+
 ### User
 
 ```
