@@ -10,6 +10,9 @@ const mongoose = require('mongoose');
 // Initialize Express app
 const app = express();
 
+// Import CORS
+const cors = require('cors');
+
 // Import routes
 const apiRoutes = require("./app/routes/Router");
 
@@ -18,6 +21,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+// Initialize CORS
+app.use(cors());
 
 // Connect to Mongoose and set connection variable
 mongoose.connect('mongodb://localhost/global-api2', { useNewUrlParser: true });
