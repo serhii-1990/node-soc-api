@@ -22,8 +22,13 @@ const commentController = require('../controllers/commentController');
 // Login routes
 router.route('/login')
     .post(loginController.login);
-router.route('/token')
-    .post(loginController.token);
+
+/*
+router.route('/refresh/:refreshToken')
+    .post(loginController.refresh);
+router.route('/revoke/:refreshToken')
+    .post(loginController.refresh);
+ */
 
 // User routes
 router.route('/user')

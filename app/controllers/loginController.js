@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 // Import jwt config
 const config = require('../config/config');
 //Import User model
-User = require('../models/User');
+Token = require('../models/Token');
 // Create token list
 const tokenList = {};
 
@@ -34,20 +34,33 @@ exports.login = function(req, res, email, password) {
     // ревок (по ум. должен быть false)
 };
 
-exports.token = function(req, res) {
-    const loginData = req.body;
-    if ((loginData.refreshToken) && (loginData.refreshToken in tokenList)) {
-        const user = {
-            "username": loginData.username
-        };
-        const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife })
-        const response = {
-            "token": token,
-        };
-        // update the token in the list
-        tokenList[loginData.refreshToken].token = token
-        res.status(200).json(response);
-    } else {
-        res.status(404).send('Invalid request')
-    }
+exports.refresh = function(req, res) {
+
+    Token.findById(req.params.refreshToken, function(err, refresh) {
+        if (err)
+            res.send(err);
+        const loginData = req.body;
+        refresh.username = loginData.username;
+        refresh.refreshToken = loginData.refreshToken;
+        refresh.isRevoked = loginData.isRevoked;
+
+        if ((refresh.refreshToken) && (refresh.refreshToken in tokenList)) {
+            const token = jwt.sign(refresh, config.secret, { expiresIn: config.tokenLife })
+            const response = {
+                "token": token,
+            };
+            tokenList[loginData.refreshToken].token = token
+            res.status(200).json(response);
+            refresh.save(function(err) {
+                if (err)
+                    res.json(err);
+                res.json({
+                    message: 'Refresh token updated',
+                    data: refresh
+                });
+            });
+        } else {
+            res.status(404).send('Invalid request')
+        }
+    });
 };
