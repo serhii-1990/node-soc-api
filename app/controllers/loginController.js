@@ -19,7 +19,7 @@ exports.login = function(req, res, email, password) {
 
     const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
     const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
-
+    // отправляю токены клиент
     const response = {
         "status": "Logged in",
         "token": token,
@@ -28,7 +28,10 @@ exports.login = function(req, res, email, password) {
 
     tokenList[refreshToken] = response;
     res.status(200).json(response);
-    console.log("Hey! It's login func!");
+    // необходимо записать в коллекцию:
+    // ид/юзернейм пользователя,
+    // рефреш токен,
+    // ревок (по ум. должен быть false)
 };
 
 exports.token = function(req, res) {
