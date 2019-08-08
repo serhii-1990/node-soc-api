@@ -25,7 +25,7 @@ POST `/refresh/:refreshToken`
 JSON
 ```
 {
-	"refreshToken": "String"
+    "refreshToken": "String"
 }
 ```
 return
@@ -44,7 +44,7 @@ POST `/revoke/:refreshToken`
 JSON
 ```
 {
-	"refreshToken": "String"
+    "refreshToken": "String"
 }
 ```
 return
