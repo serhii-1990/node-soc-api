@@ -7,11 +7,11 @@ User = require('../models/User');
 // Create token list
 const tokenList = {};
 
-exports.login = function(req, res) {
-    const loginData = req.body;
+exports.login = function(req, res, email, password) {
     // необходимо сделать
     // проверку на то, что такой пользователь есть
     // в Users по username и password
+    const loginData = req.body;
     const user = {
         "username": loginData.username,
         "password": loginData.password
