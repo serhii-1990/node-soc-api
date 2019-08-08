@@ -7,7 +7,7 @@ Token = require('../models/Token');
 // Create token list
 const tokenList = {};
 
-exports.login = function(req, res, email, password) {
+exports.login = function(req, res) {
     // необходимо сделать
     // проверку на то, что такой пользователь есть
     // в Users по username и password
@@ -21,7 +21,6 @@ exports.login = function(req, res, email, password) {
     const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
     // отправляю токены клиент
     const response = {
-        "status": "Logged in",
         "token": token,
         "refreshToken": refreshToken
     };
@@ -36,7 +35,7 @@ exports.login = function(req, res, email, password) {
 
 exports.refresh = function(req, res) {
 
-    Token.findById(req.params.refreshToken, function(err, refresh) {
+    Token.findOne(req.params.refreshToken, function(err, refresh) {
         if (err)
             res.send(err);
         const loginData = req.body;
