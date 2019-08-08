@@ -9,7 +9,7 @@ JSON
 	"password": "String",
 }
 ```
-WILL RETURNED
+return
 
 ```
 {
@@ -31,7 +31,7 @@ JSON
 	"isRevoked": "Boolean"
 }
 ```
-WILL RETURNED
+return
 ```
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
