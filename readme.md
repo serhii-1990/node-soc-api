@@ -19,7 +19,7 @@ return
 ```
 ### Refresh
 ```
-POST `/refresh/:refreshToken`
+POST `/api/refresh/:refreshToken`
 ```
 
 JSON
@@ -38,7 +38,7 @@ return
 
 ### Revoked
 ```
-POST `/revoke/:refreshToken`
+POST `/api//revoke/:refreshToken`
 ```
 
 JSON
