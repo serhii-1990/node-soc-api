@@ -1,53 +1,60 @@
 // Import express
-const express = require('express');
+const express = require("express");
 
 // Import Body parser
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // Import Mongoose
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Initialize Express app
 const app = express();
 
 // Import CORS
-const cors = require('cors');
+const cors = require("cors");
 
 // Import jwt
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 // Import routes
 const apiRoutes = require("./app/routes/Router");
 
 // Configure bodyparser to handle post requests
-app.use(bodyParser.urlencoded({
+app.use(
+  bodyParser.urlencoded({
     extended: true
-}));
+  })
+);
 app.use(bodyParser.json());
 
 // Initialize CORS
 app.use(cors());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/global-api2', { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect("mongodb://localhost/global-api2", {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 const db = mongoose.connection;
 
 // Connection check
-if (!db)
-    console.log("Issues with database connection")
-else
-    console.log("Database connected successfully")
+if (!db) console.log("Issues with database connection");
+else console.log("Database connected successfully");
 
 // Set server port
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8183;
 
 // Send message for default URL
-app.get('/', (req, res) => res.send('Server was running right <br> <a href="https://portal-ua.globallogic.com/gitlab/oleksandr.babin/global-social-api">Documentation</a> '));
+app.get("/", (req, res) =>
+  res.send(
+    'Server was running right <br> <a href="https://portal-ua.globallogic.com/gitlab/oleksandr.babin/global-social-api">Documentation</a> '
+  )
+);
 
 // Use Api routes in the App
-app.use('/api', apiRoutes);
+app.use("/api", apiRoutes);
 // Run app to listen to specified port
 app.listen(port, function() {
-    console.log("Server live at " + "http://localhost:" + port + " ❤");
+  console.log("Server live at " + "http://localhost:" + port + " ❤");
 });
