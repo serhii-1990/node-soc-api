@@ -27,8 +27,8 @@ JSON
 ```
 {
 	"username": "String",
-	"password": "String",
 	"refreshToken": "String"
+	"isRevoked": "Boolean"
 }
 ```
 WILL RETURNED
