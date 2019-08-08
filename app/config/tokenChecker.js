@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
 module.exports = (req, res, next) => {
-    console.log(req.body.token);
-    console.log(req.query.token);
+
     const token = req.body.token || req.query.token || req.headers['x-access-token']
         // decode token
     if (token) {

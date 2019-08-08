@@ -1,10 +1,17 @@
 // Import jwt
 const jwt = require('jsonwebtoken');
+// Import jwt config
 const config = require('../config/config');
+//Import User model
+User = require('../models/User');
+// Create token list
 const tokenList = {};
 
 exports.login = function(req, res) {
     const loginData = req.body;
+    // необходимо сделать
+    // проверку на то, что такой пользователь есть
+    // в Users по username и password
     const user = {
         "username": loginData.username,
         "password": loginData.password
