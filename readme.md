@@ -18,6 +18,7 @@ WILL RETURNED
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzZGFzZHNhZGEiLCJwYXNzd29yZCI6ImFzZGFzZGEiLCJpYXQiOjE1NjUyNTczMzYsImV4cCI6MTU2NTM0MzczNn0.GDWOZoIVitkL5aK_uGieRJoNLIdAZHXkx83ObCUUEeY"
 }
 ```
+### Token
 ```
 POST `/api/token`
 ```
