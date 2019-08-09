@@ -18,7 +18,7 @@ exports.index = function(req, res) {
 };
 // Create new user
 exports.new = function(req, res) {
-    var user = new User();
+    let user = new User();
     user.username = req.body.username;
     user.email = req.body.email;
     user.password = req.body.password;
