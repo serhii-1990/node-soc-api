@@ -39,7 +39,7 @@ exports.login = function(req, res) {
                 if (err)
                     console.log(err);
                 else
-                    console.log(tokens);
+                    console.log("Tokens was saved!");
             });
         } else {
             res.json(err);
@@ -73,9 +73,9 @@ exports.refresh = function(req, res) {
             // Save tokens info
             tokens.save(function(err) {
                 if (err)
-                    res.json(err);
+                    console.log(err);
                 else
-                    res.json(tokens);
+                    console.log("Token was updated!");
             });
         } else {
             res.status(404).send('Invalid request')
@@ -83,27 +83,27 @@ exports.refresh = function(req, res) {
     });
 };
 
-exports.invoke = function(req, res) {
+exports.revoke = function(req, res) {
     Token.findOne({ "refreshToken": req.params.refreshToken }, function(err, result) {
         if (err)
             res.send(err);
         else {
             // View token info by refreshToken
-            const response = req.params.refreshToken + " was revoked!";
+            const response = result.username + " was revoked!";
             res.status(200).json(response);
             // Add upd data into token collection
             var tokens = new Token();
             // How can i write down an old username?
             tokens.username = result.username;
-            tokens.refreshToken = resul.refreshToken;
+            tokens.refreshToken = result.refreshToken;
             // Revoke token
             tokens.isRevoked = true;
             // Save tokens info
             tokens.save(function(err) {
                 if (err)
-                    res.json(err);
+                    console.log(err);
                 else
-                    res.json(tokens);
+                    console.log("Token was revoked!");
             });
         }
     });

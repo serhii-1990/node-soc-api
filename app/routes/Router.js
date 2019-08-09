@@ -25,10 +25,10 @@ router.route('/login')
 
 router.route('/refresh/:refreshToken')
     .post(loginController.refresh);
-/*
+
 router.route('/revoke/:refreshToken')
-    .post(loginController.refresh);
- */
+    .post(loginController.revoke);
+
 
 // User routes
 router.route('/user')
