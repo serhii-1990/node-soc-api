@@ -5,7 +5,7 @@ Post = require('../models/Post');
 
 exports.add = function(req, res) {
     const likeBody = req.body;
-    Like.find({ "post_id": req.params.post_id, "user_id": req.params.username }, function(err, response) {
+    Like.find({ "post_id": likeBody.post_id, "user_id": likeBody.username }, function(err, response) {
         // If user is find
         if (response.username !== null) {
             // Search by username
