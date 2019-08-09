@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const tokenSchema = new mongoose.Schema({
     username: {
         type: String,
-        unique: true,
+        unique: false,
         required: true,
         validate: {
             validator: function(reg) {

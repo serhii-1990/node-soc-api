@@ -49,12 +49,12 @@ exports.login = function(req, res) {
 };
 
 exports.refresh = function(req, res) {
-    Token.findOne({ "refreshToken": req.params.refresh }, { "isRevoked": false }, function(err, result) {
-        const refreshData = req.body;
-        // Is refresh token empty
-        if (refreshData !== null) {
+    Token.findOne({ "refreshToken": req.params.refreshToken }, function(err, result) {
+
+        // Is collection token empty
+        if (result.username !== null && result.isRevoked === false) {
             const getRefreshToken = {
-                    "refreshToken": req.params.refresh
+                    "refreshToken": req.params.refreshToken
                 }
                 // Generate new refresh token
             const token = jwt.sign(getRefreshToken, config.secret, { expiresIn: config.tokenLife })
@@ -66,15 +66,16 @@ exports.refresh = function(req, res) {
             // Add upd data into token collection
             var tokens = new Token();
             // How can i write down an old username?
-            tokens.username = tokens.username;
+            tokens.username = result.username;
             tokens.refreshToken = token;
-            tokens.isRevoked = false;
+            tokens.isRevoked = result.isRevoked;
+            console.log(tokens);
             // Save tokens info
             tokens.save(function(err) {
                 if (err)
-                    console.log(err);
+                    res.json(err);
                 else
-                    console.log(tokens);
+                    res.json(tokens);
             });
         } else {
             res.status(404).send('Invalid request')
@@ -86,8 +87,24 @@ exports.invoke = function(req, res) {
     Token.findOne({ "refreshToken": req.params.refreshToken }, function(err, result) {
         if (err)
             res.send(err);
-        else
-        // View token info by refreshToken
-            res.send(result);
+        else {
+            // View token info by refreshToken
+            const response = req.params.refreshToken + " was revoked!";
+            res.status(200).json(response);
+            // Add upd data into token collection
+            var tokens = new Token();
+            // How can i write down an old username?
+            tokens.username = result.username;
+            tokens.refreshToken = resul.refreshToken;
+            // Revoke token
+            tokens.isRevoked = true;
+            // Save tokens info
+            tokens.save(function(err) {
+                if (err)
+                    res.json(err);
+                else
+                    res.json(tokens);
+            });
+        }
     });
 };
