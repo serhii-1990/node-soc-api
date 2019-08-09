@@ -5,11 +5,10 @@ Post = require('../models/Post');
 
 exports.add = function(req, res) {
     const likeBody = req.body;
-
-    Like.find({ "post_id": likeBody.post_id, "user_id": likeBody.username }, function(err, response) {
-        // если пользователь найден
+    Like.find({ "post_id": req.params.post_id, "user_id": req.params.username }, function(err, response) {
+        // If user is find
         if (response.username !== null) {
-            // поиск по ользователям
+            // Search by username
             Post.find({ "username": likeBody.username }, function(error, result) {
                 if (response.is_liked === true) {
                     result.data.likes--;
@@ -18,20 +17,36 @@ exports.add = function(req, res) {
 
                 } else {
                     result.data.likes++;
-                    // to do
-                    // save()
+                    // TO DO
+                    // SAVE()
 
                 };
             });
         } else {
-            // если пользователь не найден
-            // добавить в коллекция Likes
+            // If user isn't find
+            // We will add user like into collection Likes
             let like = new Like();
             like.post_id = likeBody.post_id;
             like.username = likeBody.username;
-            // установать флаг is_liked на true
+            // Changed status
             like.is_liked = true;
-            // save()
+            // TO DO
+            // SAVE()
+        }
+
+    });
+};
+
+exports.get = function(req, res) {
+
+    Like.count({ "post_id": req.params.post_id, "is_liked": true }, function(err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            // Here is count of like's for post
+            console.log(count);
+            // TO DO
+            // Write down count into Post.likes model
         }
 
     });
