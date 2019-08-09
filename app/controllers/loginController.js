@@ -17,8 +17,8 @@ exports.login = function(req, res) {
         "password": loginData.password
     };
     // Is user exists
-    User.find({ "username": loginData.username }, { "password": loginData.password }, function(err, result) {
-        if (result.length !== 0) {
+    User.find({ "username": loginData.username }, function(err, result) {
+        if (result !== 0) {
             const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
             const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
             // Write down my tokens
@@ -50,7 +50,6 @@ exports.login = function(req, res) {
 
 exports.refresh = function(req, res) {
     Token.findOne({ "refreshToken": req.params.refreshToken }, function(err, result) {
-
         // Is collection token empty
         if (result.username !== null && result.isRevoked === false) {
             const getRefreshToken = {
@@ -65,7 +64,6 @@ exports.refresh = function(req, res) {
             res.status(200).json(response);
             // Add upd data into token collection
             var tokens = new Token();
-            // How can i write down an old username?
             tokens.username = result.username;
             tokens.refreshToken = token;
             tokens.isRevoked = result.isRevoked;
@@ -93,7 +91,7 @@ exports.revoke = function(req, res) {
             res.status(200).json(response);
             // Add upd data into token collection
             var tokens = new Token();
-            // How can i write down an old username?
+            // Write down same username
             tokens.username = result.username;
             tokens.refreshToken = result.refreshToken;
             // Revoke token
