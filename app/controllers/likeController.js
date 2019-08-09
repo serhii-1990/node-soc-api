@@ -1,22 +1,38 @@
 // Import Like model
 Like = require('../models/Like');
+// Import Post model
+Post = require('../models/Post');
 
 exports.add = function(req, res) {
     const likeBody = req.body;
 
-    Like.find({ "post_id": likeBody.post_id, "user_id": likeBody.user_id }, function(err, response) {
+    Like.find({ "post_id": likeBody.post_id, "user_id": likeBody.username }, function(err, response) {
         // если пользователь найден
-        // проверить значение is_liked
-        // если true Post.likes --, если false, то Post.likes ++
+        if (response.username !== null) {
+            // поиск по ользователям
+            Post.find({ "username": likeBody.username }, function(error, result) {
+                if (response.is_liked === true) {
+                    result.data.likes--;
+                    // to do
+                    // save()
 
-        // если пользователь не найден
-        // добавить в коллекция Likes
-        let like = new Like();
-        like.post_id = likeBody.post_id;
-        like.user_id = likeBody.user_id;
-        like.is_liked = true;
-        // установать флаг is_liked на true
-        // save()
+                } else {
+                    result.data.likes++;
+                    // to do
+                    // save()
+
+                };
+            });
+        } else {
+            // если пользователь не найден
+            // добавить в коллекция Likes
+            let like = new Like();
+            like.post_id = likeBody.post_id;
+            like.username = likeBody.username;
+            // установать флаг is_liked на true
+            like.is_liked = true;
+            // save()
+        }
 
     });
 };

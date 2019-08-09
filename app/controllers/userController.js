@@ -9,11 +9,7 @@ exports.index = function(req, res) {
                 message: err,
             });
         }
-        res.json({
-            status: "success",
-            message: "Users retrieved successfully",
-            data: user
-        });
+        res.json(user);
     });
 };
 // Create new user
