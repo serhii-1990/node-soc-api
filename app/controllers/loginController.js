@@ -49,36 +49,36 @@ exports.login = function(req, res) {
 };
 
 exports.refresh = function(req, res) {
-    Token.findOne({ "refreshToken": req.params.refreshToken }, function(err, result) {
-        if (err)
-            res.send(err);
-        else
-        // View token info by refreshToken
-            res.send(result);
-        // сгененрировать новый токен
-        // вернуть клиенту аксесс токен и новый рефреш токен
-
-        /*  const refreshData = req.body;
-         refresh.refreshToken = refreshData.refreshToken;
-
-         if ((refresh.refreshToken) && (refresh.refreshToken in tokenList)) {
-             const token = jwt.sign(refresh, config.secret, { expiresIn: config.tokenLife })
-             const response = {
-                 "token": token,
-             };
-             tokenList[refreshData.refreshToken].token = token
-             res.status(200).json(response);
-             refresh.save(function(err) {
-                 if (err)
-                     res.json(err);
-                 res.json({
-                     message: 'Refresh token updated',
-                     data: refresh
-                 });
-             });
-         } else {
-             res.status(404).send('Invalid request')
-         } */
+    Token.findOne({ "refreshToken": req.params.refresh }, { "isRevoked": false }, function(err, result) {
+        const refreshData = req.body;
+        // Is refresh token empty
+        if (refreshData !== null) {
+            const getRefreshToken = {
+                    "refreshToken": req.params.refresh
+                }
+                // Generate new refresh token
+            const token = jwt.sign(getRefreshToken, config.secret, { expiresIn: config.tokenLife })
+                // Create response to client
+            const response = {
+                "refreshToken": token,
+            };
+            res.status(200).json(response);
+            // Add upd data into token collection
+            var tokens = new Token();
+            // How can i write down an old username?
+            tokens.username = tokens.username;
+            tokens.refreshToken = token;
+            tokens.isRevoked = false;
+            // Save tokens info
+            tokens.save(function(err) {
+                if (err)
+                    console.log(err);
+                else
+                    console.log(tokens);
+            });
+        } else {
+            res.status(404).send('Invalid request')
+        }
     });
 };
 
