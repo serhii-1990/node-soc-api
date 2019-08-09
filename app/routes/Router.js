@@ -29,7 +29,6 @@ router.route('/refresh/:refreshToken')
 router.route('/revoke/:refreshToken')
     .post(loginController.revoke);
 
-
 // User routes
 router.route('/user')
     .get(userController.index)
