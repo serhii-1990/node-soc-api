@@ -12,8 +12,8 @@ exports.add = function(req, res) {
             Post.find({ "username": likeBody.username }, function(error, result) {
                 if (response.is_liked === true) {
                     result.data.likes--;
-                    // to do
-                    // save()
+                    // TO DO
+                    // SAVE()
 
                 } else {
                     result.data.likes++;
