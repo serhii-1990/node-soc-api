@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-const tokenSchema = new mongoose.Schema({
+const likeSchema = new mongoose.Schema({
+    post_id: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true,
@@ -11,17 +15,14 @@ const tokenSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid username!`
         }
     },
-    refreshToken: {
-        type: String,
-        required: true
-    },
-    isRevoked: {
+    is_liked: {
         type: Boolean,
         required: true
     }
 });
 
-const Token = module.exports = mongoose.model('Token', tokenSchema);
+// Export Like model
+const Like = module.exports = mongoose.model('Like', likeSchema);
 module.exports.get = function(callback, limit) {
-    Token.find(callback).limit(limit);
+    Like.find(callback).limit(limit);
 }

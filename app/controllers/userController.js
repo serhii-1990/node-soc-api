@@ -9,16 +9,12 @@ exports.index = function(req, res) {
                 message: err,
             });
         }
-        res.json({
-            status: "success",
-            message: "Users retrieved successfully",
-            data: user
-        });
+        res.json(user);
     });
 };
 // Create new user
 exports.new = function(req, res) {
-    var user = new User();
+    let user = new User();
     user.username = req.body.username;
     user.email = req.body.email;
     user.password = req.body.password;
