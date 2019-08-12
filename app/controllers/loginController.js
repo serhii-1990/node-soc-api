@@ -18,7 +18,8 @@ exports.login = function(req, res) {
     };
     // Is user exists
     User.find({ "username": loginData.username }, function(err, result) {
-        if (result !== 0) {
+        console.log(result);
+        if (result == null) {
             const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife });
             const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife });
             // Write down my tokens
