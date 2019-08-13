@@ -1,0 +1,33 @@
+Part 1
+
+Post.find({ "username": likeBody.username }, function (error, result) {
+        console.log(result);
+        if (response === true) {
+          //   result.data.likes--;
+          console.log(response);
+          // response[0] = false;
+          console.log("tru-like", response);
+          // TO DO
+          // SAVE()
+        } else {
+          //   result.data.likes++;
+          console.log(response);
+          // response[0] = true;
+          console.log("false-like", response);
+          // TO DO
+          // SAVE()
+        }
+      });
+
+
+      Part 2
+
+      // If user isn't find
+      // We will add user like into collection Likes
+      let like = new Like();
+      like.post_id = likeBody.post_id;
+      like.username = likeBody.username;
+      // Changed status
+      like.is_liked = true;
+      // TO DO
+      // SAVE()
