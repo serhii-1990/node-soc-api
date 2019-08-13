@@ -18,7 +18,7 @@ exports.add = function(req, res) {
         // Search by username
         console.log("response.username found");
 
-        Post.find({ username: likeBody.username }, function(error, result) {
+        Post.find({ _id: likeBody.post_id }, function(error, result) {
           if (response[0].is_liked) {
             result[0].likes--;
             response[0].is_liked = false;
@@ -60,7 +60,7 @@ exports.add = function(req, res) {
         console.log("response.username not found");
         // If user isn't find
         // We will add user like into collection Likes
-        Post.find({ username: likeBody.username }, function(error, result) {
+        Post.find({ _id: likeBody.post_id }, function(error, result) {
           result[0].likes++;
           result[0].save(function(err) {
             if (err) res.json(err);
