@@ -3,46 +3,78 @@ Like = require("../models/Like");
 // Import Post model
 Post = require("../models/Post");
 
+// let handleLikeNumbers= (likeNumber) => {
+
+// }
+
 exports.add = function(req, res) {
   const likeBody = req.body;
   Like.find(
     { post_id: likeBody.post_id, username: likeBody.username },
     function(err, response) {
-      console.log("response is :", response.username);
       // If user is find
-      if (response.username) {
-        // Part 1
+      // console.log(response[0].is_liked);
+      if (response[0]) {
         // Search by username
+        console.log("response.username found");
 
         Post.find({ username: likeBody.username }, function(error, result) {
-          console.log(result);
-          if (result === true) {
-            //   result.data.likes--;
-            console.log(result);
-            console.log("true-like", result);
-            // TO DO
-            // SAVE()
+          if (response[0].is_liked) {
+            result[0].likes--;
+            response[0].is_liked = false;
+            response[0].save(function(err) {
+              if (err) res.json(err);
+              res.json({
+                message: "disliked",
+                data: response[0]
+              });
+            });
+            result[0].save(function(err) {
+              if (err) res.json(err);
+              // res.json({
+              //   message: "like number",
+              //   data: result[0]
+              // });
+            });
           } else {
-            //   result.data.likes++;
-            console.log(result);
-            console.log("false-like", result);
-            // TO DO
-            // SAVE()
+            result[0].likes++;
+            response[0].is_liked = true;
+
+            response[0].save(function(err) {
+              if (err) res.json(err);
+              res.json({
+                message: "liked",
+                data: response[0]
+              });
+            });
+            result[0].save(function(err) {
+              if (err) res.json(err);
+              // res.json({
+              //   message: "like number",
+              //   data: result[0]
+              // });
+            });
           }
         });
-
-        console.log("response.username found");
       } else {
-        // Part 2
         console.log("response.username not found");
         // If user isn't find
         // We will add user like into collection Likes
+        Post.find({ username: likeBody.username }, function(error, result) {
+          result[0].likes++;
+          result[0].save(function(err) {
+            if (err) res.json(err);
+            // res.json({
+            //   message: "like number",
+            //   data: result[0]
+            // });
+          });
+        });
         let like = new Like();
         like.post_id = likeBody.post_id;
         like.username = likeBody.username;
         // Changed status
         like.is_liked = true;
-        // TO DO
         like.save(function(err) {
           if (err) res.json(err);
           res.json({
