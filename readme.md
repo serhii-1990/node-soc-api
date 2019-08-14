@@ -1,14 +1,18 @@
 ### Login
+
 ```
 POST `/api/login`
 ```
+
 JSON
+
 ```
 {
 	"username": "String",
 	"password": "String",
 }
 ```
+
 return
 
 ```
@@ -17,18 +21,23 @@ return
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
+
 ### Refresh
+
 ```
 POST `/api/refresh/:refreshToken`
 ```
 
 JSON
+
 ```
 {
     "refreshToken": "String"
 }
 ```
+
 return
+
 ```
 {
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -36,17 +45,21 @@ return
 ```
 
 ### Revoked
+
 ```
 POST `/api//revoke/:refreshToken`
 ```
 
 JSON
+
 ```
 {
     "refreshToken": "String"
 }
 ```
+
 return
+
 ```
 {
     "status": "revoked"
@@ -63,7 +76,9 @@ PUT `/api/user/:id`
 PATCH `/api/user/:id`
 DELETE `/api/user/:id`
 ```
+
 JSON
+
 ```
 {
 	"username": "String",
@@ -97,7 +112,9 @@ PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`
 ```
+
 JSON
+
 ```
 {
 	"username": "String",
@@ -107,6 +124,7 @@ JSON
 	"likes": "Number"
 }
 ```
+
 **username, body, likes**
 
 ### Comment
@@ -119,7 +137,9 @@ PUT `/api/comment/:id`
 PATCH `/api/comment/:id`
 DELETE `/api/comment/:id`
 ```
+
 JSON
+
 ```
 {
 	"postid": "String",
@@ -128,4 +148,21 @@ JSON
 	"likes": "Number"
 }
 ```
+
+### Like
+
+```
+POST `/api/like`
+```
+
+JSON
+
+```
+{
+    "post_id": "String",
+	"username": "String",
+	"is_liked": "Boolean",
+}
+```
+
 **postid, username, body, likes**
