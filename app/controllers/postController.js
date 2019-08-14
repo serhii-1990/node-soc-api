@@ -1,5 +1,6 @@
 // Import Post model
 Post = require("../models/Post");
+User = require("../models/User");
 // Get list of posts
 exports.index = function(req, res) {
   Post.get(function(err, post) {
@@ -71,4 +72,15 @@ exports.delete = function(req, res) {
       });
     }
   );
+};
+
+exports.viewAllUsersPost = function(req, res) {
+  const userPost = req.body;
+  Post.find({ username: userPost.username }, function(err, posts) {
+    if (err) res.send(err);
+    res.json({
+      message: "Posts details loading..",
+      data: posts
+    });
+  });
 };

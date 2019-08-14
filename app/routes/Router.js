@@ -51,6 +51,8 @@ router
   .put(postController.update)
   .delete(postController.delete);
 
+router.route("/user-posts").post(postController.viewAllUsersPost);
+
 // Comment routes
 router
   .route("/comment")
@@ -63,9 +65,11 @@ router
   .put(commentController.update)
   .delete(commentController.delete);
 
+router.route("/post-commetns").post(commentController.viewAllPostsCommetns);
+
 // Likes
 router.route("/like").post(likeController.add);
-router.route("like/:like_id").get(likeController.get);
+router.route("like/:like_id").post(likeController.get);
 
 // Export API routes
 module.exports = router;
