@@ -107,12 +107,13 @@ JSON
 ```
 GET `/api/post`
 POST `/api/post`
+POST '/api/user-posts'
 GET `/api/post/:id`
 PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`
 ```
-POST '/api/user-posts'
+
 
 JSON
 
@@ -133,13 +134,14 @@ JSON
 ```
 GET `/api/comment`
 POST `/api/comment`
+POST '/post-commetns'
 GET `/api/comment/:id`
 PUT `/api/comment/:id`
 PATCH `/api/comment/:id`
 DELETE `/api/comment/:id`
 ```
 
-POST '/post-commetns'
+
 
 JSON
 
