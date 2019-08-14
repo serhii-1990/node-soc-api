@@ -112,6 +112,7 @@ PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`
 ```
+POST '/api/user-posts'
 
 JSON
 
@@ -137,6 +138,8 @@ PUT `/api/comment/:id`
 PATCH `/api/comment/:id`
 DELETE `/api/comment/:id`
 ```
+
+POST '/post-commetns'
 
 JSON
 
