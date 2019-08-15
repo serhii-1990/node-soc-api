@@ -72,6 +72,7 @@ return
 GET `/api/user`
 POST `/api/user`
 GET `/api/user/:id`
+GET `/api/user-posts/:id`
 PUT `/api/user/:id`
 PATCH `/api/user/:id`
 DELETE `/api/user/:id`
@@ -108,6 +109,7 @@ JSON
 GET `/api/post`
 POST `/api/post`
 GET `/api/post/:id`
+GET `/api/post-comments/:id`
 PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`

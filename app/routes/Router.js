@@ -39,6 +39,8 @@ router
   .put(userController.update)
   .delete(userController.delete);
 
+router.route("/user-posts/:user_id").get(userController.viewAllUsersPost);
+
 // Post routes
 router
   .route("/post")
@@ -51,8 +53,9 @@ router
   .put(postController.update)
   .delete(postController.delete);
 
-router.route("/user-posts").post(postController.viewAllUsersPost);
-
+router
+  .route("/post-commetns/:post_id")
+  .get(postController.viewAllPostsCommetns);
 // Comment routes
 router
   .route("/comment")
@@ -64,8 +67,6 @@ router
   .patch(commentController.update)
   .put(commentController.update)
   .delete(commentController.delete);
-
-router.route("/post-commetns").post(commentController.viewAllPostsCommetns);
 
 // Likes
 router.route("/like").post(likeController.add);
