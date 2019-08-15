@@ -2,6 +2,7 @@
 Post = require("../models/Post");
 User = require("../models/User");
 Comment = require("../models/Comment");
+Like = require("../models/Like");
 // Get list of posts
 exports.index = function(req, res) {
   Post.get(function(err, post) {
@@ -78,11 +79,30 @@ exports.delete = function(req, res) {
 exports.viewAllPostsCommetns = function(req, res) {
   Post.findById(req.params.post_id, function(err, post) {
     if (post) {
-      Comment.find({ postid: post._id }, function(err, result) {
+      Comment.find({ postid: post._id }, function(err, comments) {
         if (err) res.send(err);
         res.json({
           message: "Comments of post loaded",
-          data: result
+          data: comments
+        });
+      });
+    } else if (!post) {
+      res.status(404).send("Post not found");
+      return;
+    } else {
+      res.send(err);
+    }
+  });
+};
+
+exports.viewAllPostsLikes = function(req, res) {
+  Post.findById(req.params.post_id, function(err, post) {
+    if (post) {
+      Like.find({ post_id: post._id }, function(err, likes) {
+        if (err) res.send(err);
+        res.json({
+          message: "Likes of post loaded",
+          data: likes
         });
       });
     } else if (!post) {

@@ -56,6 +56,7 @@ router
 router
   .route("/post-commetns/:post_id")
   .get(postController.viewAllPostsCommetns);
+router.route("/post-likes/:post_id").get(postController.viewAllPostsLikes);
 // Comment routes
 router
   .route("/comment")

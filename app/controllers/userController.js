@@ -86,7 +86,7 @@ exports.viewAllUsersPost = function(req, res) {
         if (err) res.send(err);
         res.json({
           message: "User`s posts loaded",
-          data: result
+          data: [user, result]
         });
       });
     } else if (!user) {
