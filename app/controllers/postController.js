@@ -12,11 +12,7 @@ exports.index = function(req, res) {
         message: err
       });
     }
-    res.json({
-      status: "success",
-      message: "Posts retrieved successfully",
-      data: post
-    });
+    res.json({ post });
   });
 };
 // Create new post
@@ -41,10 +37,7 @@ exports.new = function(req, res) {
 exports.view = function(req, res) {
   Post.findById(req.params.post_id, function(err, post) {
     if (err) res.send(err);
-    res.json({
-      message: "Post details loading..",
-      data: post
-    });
+    res.json(post);
   });
 };
 // Update post

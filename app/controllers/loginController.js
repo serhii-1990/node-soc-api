@@ -12,14 +12,15 @@ const tokenList = {};
 exports.login = function(req, res) {
   // Get data from client
   const loginData = req.body;
-  const user = {
-    username: loginData.username,
-    password: loginData.password
-  };
   // Is user exists
   User.find({ username: loginData.username }, function(err, result) {
     console.log(result);
-    if (result !== null) {
+    if (result) {
+      const user = {
+        username: result[0].username,
+        password: result[0].password,
+        user_id: result[0]._id
+      };
       const token = jwt.sign(user, config.secret, {
         expiresIn: config.tokenLife
       });
