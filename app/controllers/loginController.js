@@ -19,7 +19,7 @@ exports.login = function(req, res) {
       const user = {
         username: result[0].username,
         password: result[0].password,
-        user_id: result[0]._id
+        user_id: result[0].id
       };
       const token = jwt.sign(user, config.secret, {
         expiresIn: config.tokenLife
