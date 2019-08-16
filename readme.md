@@ -172,4 +172,4 @@ JSON
 }
 ```
 
-**postid, username, body, likes**
+**postid, username**
