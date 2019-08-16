@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 3,
-    maxlength: 240
+    maxlength: 340
   },
   image: {
     type: String,
@@ -39,6 +39,9 @@ const postSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0
+  },
+  likeStatus: {
+    type: String
   }
 });
 

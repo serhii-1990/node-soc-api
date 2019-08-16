@@ -20,6 +20,7 @@ exports.add = function(req, res) {
           console.log("this id post", result);
           if (response[0].is_liked) {
             result[0].likes--;
+            result[0].likeStatus = "https://i.ibb.co/jbbLLYM/like-toggle.png";
             response[0].is_liked = false;
             response[0].save(function(err) {
               if (err) res.json(err);
@@ -37,6 +38,7 @@ exports.add = function(req, res) {
             });
           } else {
             result[0].likes++;
+            result[0].likeStatus = "https://i.ibb.co/yq9Xb5L/like.png";
             response[0].is_liked = true;
 
             response[0].save(function(err) {
@@ -61,6 +63,7 @@ exports.add = function(req, res) {
         // We will add user like into collection Likes
         Post.find({ _id: likeBody.post_id }, function(error, result) {
           result[0].likes++;
+          result[0].likeStatus = "https://i.ibb.co/yq9Xb5L/like.png";
           result[0].save(function(err) {
             if (err) res.json(err);
             // res.json({

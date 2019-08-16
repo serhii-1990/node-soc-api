@@ -12,7 +12,7 @@ exports.index = function(req, res) {
         message: err
       });
     }
-    res.json({ post });
+    res.json(post);
   });
 };
 // Create new post
@@ -23,7 +23,7 @@ exports.new = function(req, res) {
   post.body = req.body.body;
   post.image = req.body.image;
   post.likes = req.body.likes;
-
+  post.likeStatus = "https://i.ibb.co/jbbLLYM/like-toggle.png";
   post.save(function(err) {
     if (err) res.json(err);
     else
