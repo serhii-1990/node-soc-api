@@ -1,0 +1,7 @@
+{
+  "secret": "global-logic-social-network-secret",
+  "refreshTokenSecret": "global-logic-social-network-secret",
+  "port": 8080,
+  "tokenLife": 900,
+  "refreshTokenLife": 86400
+}
