@@ -13,12 +13,11 @@ exports.add = function(req, res) {
     { post_id: likeBody.post_id, username: likeBody.username },
     function(err, response) {
       // If user is find
-      // console.log(response[0].is_liked);
       if (response[0]) {
         // Search by username
-        console.log("response.username found");
-
+        console.log("this is like", response[0]);
         Post.find({ _id: likeBody.post_id }, function(error, result) {
+          console.log("this id post", result);
           if (response[0].is_liked) {
             result[0].likes--;
             response[0].is_liked = false;

@@ -1,6 +1,7 @@
 // Import User model
 User = require("../models/User");
 Post = require("../models/Post");
+Like = require("../models/Like");
 // Get list of users
 exports.index = function(req, res) {
   User.get(function(err, user) {
@@ -82,11 +83,14 @@ exports.delete = function(req, res) {
 exports.viewAllUsersPost = function(req, res) {
   User.findById(req.params.user_id, function(err, user) {
     if (user) {
-      Post.find({ username: user.username }, function(err, result) {
+      Post.find({ username: user.username }, function(err, posts) {
         if (err) res.send(err);
-        res.json({
-          message: "User`s posts loaded",
-          data: [user, result]
+        Like.find({ username: user.username }, function(err, likes) {
+          if (err) res.send(err);
+          res.json({
+            message: "User`s posts and likes loaded",
+            data: [user, posts, likes]
+          });
         });
       });
     } else if (!user) {
