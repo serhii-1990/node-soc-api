@@ -59,7 +59,9 @@ const userSchema = new mongoose.Schema({
   city: {
     type: String,
     unique: false,
-    required: false
+    required: false,
+    maxlength: 120,
+    minlength: 3
   },
   userInfo: {
     preview: {
@@ -70,32 +72,45 @@ const userSchema = new mongoose.Schema({
     firstname: {
       type: String,
       unique: false,
-      required: false,
-      maxlength: 40
+      required: true,
+      maxlength: 40,
+      minlength: 3,
+      validator: function(reg) {
+        return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+      },
+      message: props => `${props.value} is not a valid data!`
     },
     lastname: {
       type: String,
       unique: false,
       required: false,
-      maxlength: 40
+      maxlength: 40,
+      minlength: 3,
+      validator: function(reg) {
+        return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+      },
+      message: props => `${props.value} is not a valid data!`
     },
     status: {
       type: String,
       unique: false,
       required: false,
-      maxlength: 80
+      minlength: 3,
+      maxlength: 240
     },
     education: {
       type: String,
       unique: false,
       required: false,
-      maxlength: 140
+      minlength: 3,
+      maxlength: 240
     },
     job: {
       type: String,
       unique: false,
       required: false,
-      maxlength: 140
+      minlength: 3,
+      maxlength: 240
     },
     birthday: {
       type: String,
