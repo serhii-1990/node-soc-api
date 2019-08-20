@@ -4,10 +4,10 @@ const router = require("express").Router();
 //router.use(require('../config/tokenChecker'));
 // Default API response
 router.get("/", function(req, res) {
-    res.json({
-        status: "GL Social Network API",
-        message: "REST API created using Node.js & Mongoose & Express"
-    });
+  res.json({
+    status: "GL Social Network API",
+    message: "REST API created using Node.js & Mongoose & Express"
+  });
 });
 
 // Import login controller
@@ -29,45 +29,45 @@ router.route("/revoke/:refreshToken").post(loginController.revoke);
 
 // User routes
 router
-    .route("/user")
-    .get(userController.index)
-    .post(userController.new);
+  .route("/user")
+  .get(userController.index)
+  .post(userController.new);
 router
-    .route("/user/:user_id")
-    .get(userController.view)
-    .patch(userController.update)
-    .put(userController.update)
-    .delete(userController.delete);
+  .route("/user/:user_id")
+  .get(userController.view)
+  .patch(userController.update)
+  .put(userController.update)
+  .delete(userController.delete);
 
 router.route("/user-posts/:user_id").get(postController.postsByUsername);
 
 // Post routes
 router
-    .route("/post")
-    .get(postController.index)
-    .post(postController.new);
+  .route("/post")
+  .get(postController.index)
+  .post(postController.new);
 router
-    .route("/post/:post_id")
-    .get(postController.view)
-    .patch(postController.update)
-    .put(postController.update)
-    .delete(postController.delete);
+  .route("/post/:post_id")
+  .get(postController.view)
+  .patch(postController.update)
+  // .put(postController.update)
+  .delete(postController.delete);
 
 router
-    .route("/post-commetns/:post_id")
-    .get(postController.viewAllPostsCommetns);
+  .route("/post-commetns/:post_id")
+  .get(postController.viewAllPostsCommetns);
 router.route("/post-likes/:post_id").get(postController.viewAllPostsLikes);
 // Comment routes
 router
-    .route("/comment")
-    .get(commentController.index)
-    .post(commentController.new);
+  .route("/comment")
+  .get(commentController.index)
+  .post(commentController.new);
 router
-    .route("/comment/:comment_id")
-    .get(commentController.view)
-    .patch(commentController.update)
-    .put(commentController.update)
-    .delete(commentController.delete);
+  .route("/comment/:comment_id")
+  .get(commentController.view)
+  .patch(commentController.update)
+  .put(commentController.update)
+  .delete(commentController.delete);
 
 // Likes
 router.route("/like").post(likeController.add);
