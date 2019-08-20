@@ -16,6 +16,28 @@ const commentSchema = new mongoose.Schema({
       message: props => `${props.value} is not a valid username!`
     }
   },
+  firstname: {
+    type: String,
+    unique: false,
+    required: false,
+    maxlength: 40,
+    minlength: 3,
+    validator: function(reg) {
+      return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+    },
+    message: props => `${props.value} is not a valid data!`
+  },
+  lastname: {
+    type: String,
+    unique: false,
+    required: false,
+    maxlength: 40,
+    minlength: 3,
+    validator: function(reg) {
+      return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+    },
+    message: props => `${props.value} is not a valid data!`
+  },
   body: {
     type: String,
     required: true,

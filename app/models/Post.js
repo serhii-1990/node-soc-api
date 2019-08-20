@@ -12,6 +12,28 @@ const postSchema = new mongoose.Schema({
       message: props => `${props.value} is not a valid username!`
     }
   },
+  firstname: {
+    type: String,
+    unique: false,
+    required: false,
+    maxlength: 40,
+    minlength: 3,
+    validator: function(reg) {
+      return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+    },
+    message: props => `${props.value} is not a valid data!`
+  },
+  lastname: {
+    type: String,
+    unique: false,
+    required: false,
+    maxlength: 40,
+    minlength: 3,
+    validator: function(reg) {
+      return /"[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]$"/.test(reg);
+    },
+    message: props => `${props.value} is not a valid data!`
+  },
   title: {
     type: String,
     required: false,
@@ -36,6 +58,11 @@ const postSchema = new mongoose.Schema({
     }
   },
   likes: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  commentsNumber: {
     type: Number,
     required: true,
     default: 0

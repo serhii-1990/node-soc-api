@@ -103,7 +103,7 @@ JSON
 
 **username, email, password, country**
 
-Body of Patch request for any of these user`s data:
+Body of Patch request for user`s data:
 JSON
 
 ```
@@ -144,11 +144,14 @@ JSON
 	"title": "String",
 	"body": "String",
 	"image": "String",
-	"likes": "Number"
+	"likes": "Number",
+	"commentsNumber": "Number"
+	"firstname": "String",
+	    "lastname": "String",
 }
 ```
 
-**username, body, likes**
+**username, body, likes, commentsNumber**
 
 ### Comment
 
@@ -169,9 +172,12 @@ JSON
 	"postid": "String",
 	"username": "String",
 	"body": "String",
-	"likes": "Number"
+	"firstname": "String",
+	    "lastname": "String",
 }
 ```
+
+**username, body, postid**
 
 ### Like
 
@@ -186,7 +192,9 @@ JSON
     "post_id": "String",
 	"username": "String",
 	"is_liked": "Boolean",
+	"firstname": "String",
+    "lastname": "String",
 }
 ```
 
-**postid, username**
+**post_id, username**

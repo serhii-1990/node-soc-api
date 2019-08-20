@@ -1,5 +1,7 @@
 // Import Comment model
 Comment = require("../models/Comment");
+User = require("../models/User");
+Post = require("../models/Post");
 // Get list of comments
 exports.index = function(req, res) {
   Comment.get(function(err, comment) {
@@ -18,19 +20,31 @@ exports.index = function(req, res) {
 };
 // Create new comment
 exports.new = function(req, res) {
-  var comment = new Comment();
-  comment.postid = req.body.postid ? req.body.postid : user.postid;
-  comment.username = req.body.username;
-  comment.body = req.body.body;
-  comment.likes = req.body.likes;
+  User.findOne({ username: req.body.username }, function(err, userData) {
+    if (err) res.json(err, "User not found");
+    Post.findOne({ _id: req.body.postid }, function(err, postData) {
+      if (err) res.json(err, "Post not found");
 
-  comment.save(function(err) {
-    if (err) res.json(err);
-    else
-      res.json({
-        message: "New comment created!",
-        data: comment
+      var comment = new Comment();
+      comment.postid = req.body.postid ? req.body.postid : user.postid;
+      comment.username = req.body.username;
+      comment.body = req.body.body;
+      comment.likes = req.body.likes;
+      comment.firstname = userData.userInfo.firstname;
+      comment.lastname = userData.userInfo.lastname;
+      postData.commentsNumber++;
+      postData.save(function(err) {
+        if (err) res.json(err, "Comment number not added");
       });
+      comment.save(function(err) {
+        if (err) res.json(err);
+        else
+          res.json({
+            message: "New comment created and added to the post!",
+            data: comment
+          });
+      });
+    });
   });
 };
 // Get single comment

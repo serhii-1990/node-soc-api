@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema({
     firstname: {
       type: String,
       unique: false,
-      required: true,
+      required: false,
       maxlength: 40,
       minlength: 3,
       validator: function(reg) {
