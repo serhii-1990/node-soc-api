@@ -103,6 +103,26 @@ JSON
 
 **username, email, password, country**
 
+Body of Patch request for any of these user`s data:
+JSON
+
+```
+ {
+	"country": "String",
+	"state": "String",
+	"city": "String",
+	"preview": "String",
+	"firstname": "String",
+	"lastname": "String",
+	"status": "String",
+	"education": "String",
+	"job": "String",
+	"birthday": "String",
+	"isBlocked": "Boolean"
+}
+
+```
+
 ### Post
 
 ```
@@ -115,7 +135,6 @@ PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`
 ```
-
 
 JSON
 
@@ -142,8 +161,6 @@ PUT `/api/comment/:id`
 PATCH `/api/comment/:id`
 DELETE `/api/comment/:id`
 ```
-
-
 
 JSON
 
