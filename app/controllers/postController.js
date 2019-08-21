@@ -76,13 +76,41 @@ exports.delete = function(req, res) {
 };
 
 exports.viewAllPostsCommetns = function(req, res) {
+  var pageNo = 1;
+  var size = parseInt(req.query.size);
+  if (pageNo < 0 || pageNo === 0) {
+    response = {
+      error: true,
+      message: "invalid page number, should start with 1"
+    };
+    return res.json(response);
+  }
   Post.findById(req.params.post_id, function(err, post) {
     if (post) {
       Comment.find({ postid: post._id }, function(err, comments) {
         if (err) res.send(err);
-        res.json({
-          message: "Comments of post loaded",
-          data: comments
+        // pageInfo.totalPages = Math.ceil(comments.length / size);
+        // pageInfo.totalItems = comments.length;
+        // pageInfo.itemsPerPage = size;
+        // pageInfo.currentPage = pageNo;
+
+        totalPages = Math.ceil(comments.length / size);
+        totalItems = comments.length;
+        itemsPerPage = size;
+        currentPage = pageNo;
+        Comment.find({ postid: post._id }, {}, { limit: size }, function(
+          err,
+          limitCommetns
+        ) {
+          if (err) res.send(err);
+          res.json({
+            message: "Comments rertived",
+            totalPages,
+            totalItems,
+            itemsPerPage,
+            currentPage,
+            limitCommetns
+          });
         });
       });
     } else if (!post) {

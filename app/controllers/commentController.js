@@ -75,29 +75,35 @@ exports.update = function(req, res) {
     });
   });
 };
+
 exports.viewAllPostsCommetns = function(req, res) {
-  const postComments = req.body;
+  var postComments = req.body;
   Comment.find({ postid: postComments.postid }, function(err, comments) {
     if (err) res.send(err);
     res.json({
       message: "Comments details loading..",
-      data: comments
+      comments
     });
   });
 };
 
 // Delete comment
 exports.delete = function(req, res) {
-  Comment.remove(
-    {
-      _id: req.params.comment_id
-    },
-    function(err, comment) {
-      if (err) res.send(err);
-      res.json({
-        status: "success",
-        message: "Comment deleted"
+  Comment.findOne({ _id: req.params.comment_id }, function(err, comment) {
+    if (err) res.send(err, "Commetn not found");
+    Comment.deleteOne({ _id: req.params.comment_id }, function(err) {
+      Post.findOne({ _id: comment.postid }, function(err, postData) {
+        if (err) res.json(err, "Post not found");
+        postData.commentsNumber--;
+        postData.save(function(err) {
+          if (err) res.json(err, "Comment number not removed");
+        });
       });
-    }
-  );
+    });
+    if (err) res.send(err, "Commetn not found");
+    res.json({
+      status: "success",
+      message: "Comment deleted"
+    });
+  });
 };

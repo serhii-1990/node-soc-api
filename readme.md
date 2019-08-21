@@ -130,7 +130,8 @@ GET `/api/post`
 POST `/api/post`
 POST '/api/user-posts'
 GET `/api/post/:id`
-GET `/api/post-comments/:id`
+GET `/api/post-comments/:id?size=number`
+GET `/post-likes/:post_id`
 PUT `/api/post/:id`
 PATCH `/api/post/:id`
 DELETE `/api/post/:id`
@@ -147,7 +148,7 @@ JSON
 	"likes": "Number",
 	"commentsNumber": "Number"
 	"firstname": "String",
-	    "lastname": "String",
+	"lastname": "String",
 }
 ```
 
@@ -173,7 +174,7 @@ JSON
 	"username": "String",
 	"body": "String",
 	"firstname": "String",
-	    "lastname": "String",
+	"lastname": "String",
 }
 ```
 
