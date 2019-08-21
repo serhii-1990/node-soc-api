@@ -54,6 +54,7 @@ router
   .delete(postController.delete);
 
 router.route("/post-likes/:post_id").get(postController.viewAllPostsLikes);
+
 // Comment routes
 router
   .route("/comment")
