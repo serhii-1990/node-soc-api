@@ -53,7 +53,7 @@ router
   // .put(postController.update)
   .delete(postController.delete);
 router
-  .route("/post-commetns/:post_id")
+  .route("/post-comments/:post_id")
   .get(postController.viewAllPostsCommetns);
 router.route("/post-likes/:post_id").get(postController.viewAllPostsLikes);
 

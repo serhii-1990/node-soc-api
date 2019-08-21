@@ -29,6 +29,7 @@ exports.new = function(req, res) {
     post.commentsNumber = req.body.commentsNumber;
     post.firstname = userData[0].userInfo.firstname;
     post.lastname = userData[0].userInfo.lastname;
+    post.likeStatus = "https://i.ibb.co/jbbLLYM/like-toggle.png";
     post.save(function(err) {
       if (err) res.json(err);
       else
@@ -89,11 +90,6 @@ exports.viewAllPostsCommetns = function(req, res) {
     if (post) {
       Comment.find({ postid: post._id }, function(err, comments) {
         if (err) res.send(err);
-        // pageInfo.totalPages = Math.ceil(comments.length / size);
-        // pageInfo.totalItems = comments.length;
-        // pageInfo.itemsPerPage = size;
-        // pageInfo.currentPage = pageNo;
-
         totalPages = Math.ceil(comments.length / size);
         totalItems = comments.length;
         itemsPerPage = size;
