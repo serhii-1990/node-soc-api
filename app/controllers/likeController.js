@@ -15,7 +15,6 @@ exports.add = function(req, res) {
       // If user is find
       if (response[0]) {
         // Search by username
-        console.log("this is like", response[0]);
         Post.find({ _id: likeBody.post_id }, function(error, result) {
           console.log("this id post", result);
           if (response[0].is_liked) {
@@ -38,7 +37,7 @@ exports.add = function(req, res) {
             });
           } else {
             result[0].likes++;
-            result[0].likeStatus = "https://i.ibb.co/yq9Xb5L/like.png";
+            result[0].likeStatus = "https://i.ibb.co/G5wKkWZ/like-1.png";
             response[0].is_liked = true;
 
             response[0].save(function(err) {
@@ -63,7 +62,7 @@ exports.add = function(req, res) {
         // We will add user like into collection Likes
         Post.find({ _id: likeBody.post_id }, function(error, result) {
           result[0].likes++;
-          result[0].likeStatus = "https://i.ibb.co/yq9Xb5L/like.png";
+          result[0].likeStatus = "https://i.ibb.co/G5wKkWZ/like-1.png";
           result[0].save(function(err) {
             if (err) res.json(err);
             // res.json({
