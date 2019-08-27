@@ -1,4 +1,80 @@
 // Import User model
+// import Controller from "./controller";
+
+const Controller = require("./controller.js");
+
+console.log(Controller);
+// class UserController extends Controller {
+//   constructor() {}
+
+//   createEntity(req, res) {
+//     let user = new this.User();
+//     user.username = req.body.username;
+//     user.email = req.body.email;
+//     user.password = req.body.password;
+//     user.country = req.body.country;
+//     user.state = req.body.state;
+//     user.city = req.body.city;
+//     user.save(err => {
+//       if (err) res.json(err);
+//       res.json({
+//         message: "New user created!",
+//         data: user
+//       });
+//     });
+//   }
+
+//   viewSingleEntity(req, res) {
+//     this.User.findById(req.params.user_id, (err, user) => {
+//       if (err) res.send(err);
+//       res.json(user);
+//     });
+//   }
+
+//   updateEntity(req, res) {
+//     User.findById(req.params.user_id, (err, user) => {
+//       if (err) res.send(err);
+
+//       user.country = req.body.country;
+//       user.state = req.body.state;
+//       user.city = req.body.city;
+//       user.userInfo = {
+//         preview: req.body.preview,
+//         firstname: req.body.firstname,
+//         lastname: req.body.lastname,
+//         status: req.body.status,
+//         education: req.body.education,
+//         job: req.body.job,
+//         birthday: req.body.birthday,
+//         isBlocked: req.body.isBlocked
+//       };
+//       user.save(function(err) {
+//         if (err) res.json(err);
+//         res.json({
+//           message: "User Info updated",
+//           user
+//         });
+//       });
+//     });
+//   }
+
+//   deleteEntity(req, res) {
+//     User.remove({ _id: req.params.user_id }, err => {
+//       if (err) res.send(err);
+//       res.json({
+//         status: "success",
+//         message: "User deleted"
+//       });
+//     });
+//   }
+// }
+
+// const userController = new UserController();
+// exports.userController.createEntity;
+// exports.userController.viewSingleEntity;
+// exports.userController.updateEntity;
+// exports.userController.deleteEntity;
+
 User = require("../models/User");
 Post = require("../models/Post");
 Like = require("../models/Like");

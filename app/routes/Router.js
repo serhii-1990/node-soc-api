@@ -30,14 +30,14 @@ router.route("/revoke/:refreshToken").post(loginController.revoke);
 // User routes
 router
   .route("/user")
-  .get(userController.index)
-  .post(userController.new);
+  // .get(userController.index)
+  .post(userController.createEntity);
 router
   .route("/user/:user_id")
-  .get(userController.view)
-  .patch(userController.update)
-  .put(userController.update)
-  .delete(userController.delete);
+  .get(userController.viewSingleEntity)
+  .patch(userController.updateEntity)
+  // .put(userController.update)
+  .delete(userController.deleteEntity);
 
 router.route("/user-posts/:user_id").get(postController.postsByUsername);
 
